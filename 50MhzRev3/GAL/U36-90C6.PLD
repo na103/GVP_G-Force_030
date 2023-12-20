@@ -1,0 +1,80 @@
+Name     U36-90C6 ;
+PartNo   00 ;
+Date     04/10/2020 ;
+Revision 01 ;
+Designer Engineer ;
+Company  Me ;
+Assembly None ;
+Location  ;
+Device   g20v8a ;
+
+
+/* *************** INPUT PINS *********************/
+PIN 1  = clock;                /* Register Clock       */
+PIN 2 = i2;
+PIN 3 = i3;
+PIN 4 = i4;
+PIN 5 = i5;
+PIN 6 = i6;
+PIN 7 = i7;
+PIN 8 = i8;
+PIN 10 = i10;
+PIN 11 = i11;
+
+PIN 13 = !OE; 		 /* Output Enable        */											
+PIN 14 = i14;
+PIN 23 = i23;
+
+/* *************** OUTPUT PINS *********************/
+PIN 15 = o15;
+PIN 16 = rf16;
+PIN 17 = rf17;
+PIN 18 = rf18;
+PIN 19 = rf19;
+PIN 20 = rf20;
+PIN 21 = rf21;
+PIN 22 = f22;
+
+
+
+/* **************** EQUATIONS **********************/
+
+!f22 = i2 & !i23 & !i3 & i5 & rf20 & rf19 & i8 & rf17 & i14
+    # i2 & !i23 & !i4 & !i5 & rf20 & rf19 & !rf18 & rf17
+    # !f22 & !i4 & !i5 & rf20 & rf19
+    # !f22 & !i5 & rf20 & rf19 & !rf16
+    # !i23 & !f22 & i5 & rf20 & rf19 & rf17
+    # !i23 & !f22 & i5 & rf20 & rf19 & !rf18 & i8
+    # !rf21 & !rf19;
+
+!rf21.D = rf20 & !i6
+    # !rf21 & rf20
+    # !rf20 & rf17
+    # !rf20 & !rf18 & !rf17;
+
+!rf20.D = f22 & !rf21 & rf18 & rf17
+    # !rf21 & !rf20;
+
+!rf19.D = !rf21 & !rf20
+    # !rf20 & !rf19;
+
+!rf18.D = !rf20 & rf18 & rf17
+    # !i23 & !i3 & i5 & rf18 & rf17 & !i10
+    # !i23 & !i4 & !i5 & rf18 & rf17
+    # !rf18 & rf17
+    # !i5 & rf20 & rf19 & !rf18 & !rf17 & i10;
+
+!rf17.D = !i5 & !rf18 & rf17 & !rf16
+    # i5 & !rf18 & rf17
+    # !rf20 & !rf18 & rf17
+    # !rf18 & !rf17
+    # !i5 & rf18 & !rf17 & !rf16 & !i10
+    # !rf19 & rf18 & !rf17;
+
+!rf16.D = !i5 & !i11
+    # !i5 & !i7
+    # !i3 & i5;
+
+!o15 = f22
+    # !rf20;
+
