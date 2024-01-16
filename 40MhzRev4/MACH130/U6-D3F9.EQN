@@ -1,0 +1,324 @@
+TITLE    FILE U6-D3F9.JED DIS-ASSEMBLED
+PATTERN  001
+REVISION 001
+AUTHOR
+COMPANY  AMD, SANTA CLARA
+DATE     Tue Jan 16 15:17:29 2024
+
+CHIP     DIS_ASM     MACH130
+
+PIN   3    O3                COMB
+PIN   4    O4                COMB
+PIN   5    R5                REG 
+PIN   6    I6             
+PIN   7    I7             
+PIN   9    I9             
+PIN   10   I10            
+PIN   12   O12               COMB
+PIN   13   I13            
+PIN   14   I14            
+PIN   15   I15            
+PIN   17   I17            
+PIN   18   I18            
+PIN   19   I19            
+PIN   20   CK1_I20        
+PIN   23   CK2_I23        
+PIN   24   I24            
+PIN   25   I25            
+PIN   26   I26            
+PIN   27   I27            
+PIN   28   I28            
+PIN   29   I29            
+PIN   30   O30               COMB
+PIN   31   O31               COMB
+PIN   33   I33            
+PIN   34   I34            
+PIN   37   R37               REG 
+PIN   38   O38               COMB
+PIN   39   O39               COMB
+PIN   40   O40               COMB
+PIN   41   I41            
+PIN   45   O45               COMB
+PIN   46   O46               COMB
+PIN   47   I47            
+PIN   48   O48               COMB
+PIN   49   R49               REG 
+PIN   50   R50               REG 
+PIN   51   R51               REG 
+PIN   52   I52            
+PIN   54   O54               COMB
+PIN   55   O55               COMB
+PIN   56   I56            
+PIN   57   I57            
+PIN   58   I58            
+PIN   59   I59            
+PIN   60   I60            
+PIN   61   I61            
+PIN   62   CK3_I62        
+PIN   65   CK4_I65        
+PIN   66   I66            
+PIN   67   I67            
+PIN   68   I68            
+PIN   69   I69            
+PIN   70   I70            
+PIN   71   I71            
+PIN   72   O72               COMB
+PIN   73   O73               COMB
+PIN   75   I75            
+PIN   76   I76            
+PIN   77   O77               COMB
+PIN   78   O78               COMB
+PIN   79   O79               COMB
+PIN   80   O80               COMB
+PIN   81   O81               COMB
+PIN   82   O82               COMB
+PIN   83   I83            
+NODE  4    R88               REG  PAIR R5             
+NODE  5    R89               REG 
+NODE  6    R90               REG 
+NODE  7    R91               REG 
+NODE  8    R92               REG 
+NODE  9    R93               REG 
+NODE  11   R95               REG 
+NODE  12   R96               REG 
+NODE  13   R97               REG 
+NODE  14   R98               REG 
+NODE  21   R105              REG  PAIR R37            
+NODE  22   R106              REG 
+NODE  23   R107              REG 
+NODE  25   R109              REG 
+NODE  28   R112              REG 
+NODE  29   R113              REG 
+NODE  30   R114              REG 
+NODE  31   R115              REG 
+NODE  32   R116              REG 
+NODE  38   R122              REG  PAIR R49            
+NODE  39   R123              REG  PAIR R50            
+NODE  40   R124              REG  PAIR R51            
+NODE  41   R125              REG 
+NODE  44   R128              REG 
+NODE  45   R129              REG 
+NODE  46   R130              REG 
+NODE  56   R140              REG 
+NODE  57   O141              COMB
+NODE  60   R144              REG 
+NODE  61   R145              REG 
+NODE  62   O146              COMB
+NODE  63   R147              REG 
+NODE  64   R148              REG 
+
+
+EQUATIONS
+
+O3     = /R107* /R145
+O3.TRST =    I83*  O141
+
+/O4    =  R98*  I47*  R96*  R90*  R95*  R93*  R89*  R92*
+         R97
+
+/R5   :=  R88* /O77* /R114
+       + /O77*  R109*  R113* /R114*  R112* /I18
+R5.CLKF =  CK4_I65
+R5.TRST =   /O77
+R88 := {/R5}
+R88.CLKF =  CK4_I65
+
+R89.T    :=  I24
+          + /I47* /R89
+R89.CLKF =  CK2_I23
+
+R90.T    :=  R89*  I24
+          + /I47* /R90
+R90.CLKF =  CK2_I23
+
+R91   :=  R88* /R109* /R113* /R114* /R112
+R91.CLKF =  CK4_I65
+
+R92.T    := /I47* /R92
+          +  R90*  R89*  I24
+R92.CLKF =  CK2_I23
+
+R93.T    := /I47* /R93
+          +  R90*  R89*  R92*  I24
+R93.CLKF =  CK2_I23
+
+O12    =  R147* /O77* /I9
+
+R95.T    := /I47* /R95
+          +  R90*  R93*  R89*  R92*  I24
+R95.CLKF =  CK2_I23
+
+R96.T    := /I47* /I6*  R96
+          + /I47*  I6* /R96
+          +  R90*  R95*  R93*  R89*  R92*  I24
+R96.CLKF =  CK2_I23
+
+R97.T    := /I47* /I76*  R97
+          + /I47*  I76* /R97
+          +  R96*  R90*  R95*  R93*  R89*  R92*  I24
+R97.CLKF =  CK2_I23
+
+R98.T    :=  R98* /I47* /I15
+          + /R98* /I47*  I15
+          +  R96*  R90*  R95*  R93*  R89*  R92*  I24*  R97
+R98.CLKF =  CK2_I23
+
+O40    =  R106* /R128
+O40.TRST =    I83*  O141
+
+O39    = /R116*  O81* /R125
+       + /R116*  I83* /R125
+O39.TRST =    O141
+
+/O38   = /I28* /O81* /I26
+
+/R37  := /R115*  R148*  R140
+       + /R115*  R91*  R148
+R37.CLKF =  CK4_I65
+R105 := {/R37}
+R105.CLKF =  CK4_I65
+
+R106  := /R115* /CK1_I20* /R148
+       + /R115* /R148*  I27
+       + /R115* /R148* /O46
+       +  I7* /I17* /I33
+       +  R115*  R148
+       +  R148*  R140
+       +  R91*  R148
+R106.CLKF =  CK4_I65
+
+R107  :=  R115* /R148* /I33
+       +  CK1_I20* /R148* /I27* /I33*  O46
+       + /R115* /R91*  R148* /R140* /I33
+R107.CLKF =  CK4_I65
+
+R109  := /R109* /R144
+       + /R109*  I13
+R109.CLKF =  CK3_I62
+
+O31    =  O46
+O31.TRST =    I83*  O141
+
+/O30   = /I28* /O81*  I26* /O46
+
+R112  :=  R114
+       + /R109* /R112
+       +  R109*  R112
+       +  R144* /I13
+R112.CLKF =  CK3_I62
+
+R113  :=  R109*  R113
+       +  R112*  R113
+       +  R144* /I13
+       + /R109* /R112* /R113
+R113.CLKF =  CK3_I62
+
+R114  :=  R114* /R112
+       +  R114*  R109
+       +  R144* /I13
+       + /R109* /R112* /R113
+R114.CLKF =  CK3_I62
+
+R115  := /R115*  I41*  R148*  R140
+       + /R115*  I41*  R91*  R148
+       + /R115*  I41*  CK1_I20* /R148* /I27
+R115.CLKF =  CK4_I65
+
+R116  :=  R115* /R148
+       +  CK1_I20* /R148* /I27
+       + /R115* /R91*  R148* /R140
+R116.CLKF =  CK4_I65
+
+/O45   =  CK1_I20*  I68*  I34* /I71
+       +  CK1_I20*  I68* /I34*  I29*  I71
+       +  CK1_I20*  I70*  I68*  I34* /I29
+       +  CK1_I20* /I68* /I34*  I59* /I71
+       + /I57
+       +  I7*  CK1_I20
+
+O46    =  O31
+O46.TRST =   /I14
+
+/O48   =  O46*  I14
+       + /O46* /I14
+
+/R49  := /O77*  R130*  R122
+       + /O77* /R129*  R130* /I67*  I19*  I60
+R49.CLKF =  CK4_I65
+R122 := {/R49}
+R122.CLKF =  CK4_I65
+
+/R50  := /I41* /I10
+R50.CLKF =  CK4_I65
+R123 := {/R50}
+R123.CLKF =  CK4_I65
+
+/R51  := /O77*  R130*  R124
+       + /O77* /R129*  R130*  I67*  I19* /O73*  I60
+R51.CLKF =  CK4_I65
+R124 := {/R51}
+R124.CLKF =  CK4_I65
+
+R125  :=  R116
+R125.CLKF =  CK3_I62
+
+/O54   = /O77*  I14* /O73
+       + /O77*  I14* /I67
+
+O55    =  O46* /O77*  I14
+
+R128  := /R106
+R128.CLKF =  CK3_I62
+
+R129  :=  R130
+R129.CLKF =  CK4_I65
+
+R130  :=  I19*  I60* /I25
+R130.CLKF =  CK4_I65
+
+/O82   = /I83* /I75
+       +  I83* /I14
+O82.TRST =   /I14
+
+/O81   = /O39
+O81.TRST =    I83
+
+/O80   = /O77* /CK1_I20* /I14*  I58* /O81
+
+/O79   =  O146
+
+O78    =  O146*  I66
+
+/O77   = /O77*  O146*  I10
+       +  I41* /O77*  O146
+       +  O39*  I41*  O146*  I10* /I56
+
+R140  := /I52
+R140.CLKF =  CK3_I62
+
+O141   = /O77*  CK1_I20*  I14
+       + /I83* /O77*  CK1_I20
+
+/O73   = /O39*  I41*  O77*  O146
+       + /O73*  I41*  O77*  O146
+O73.TRST =    I41*  O77*  O146
+
+/O72   = /O77*  CK1_I20*  I14* /I19
+       + /O77* /CK1_I20* /I14* /I58* /O81
+
+R144  :=  I13
+R144.CLKF =  CK3_I62
+
+R145  :=  R107
+R145.CLKF =  CK3_I62
+
+O146   = /I61* /I69
+
+R147  := /O77*  R147
+       + /O39*  I41* /O77
+R147.CLKF =  CK3_I62
+
+R148  :=  R148*  I41* /R115
+       + /R148*  I41*  R115
+R148.CLKF =  CK4_I65
+
